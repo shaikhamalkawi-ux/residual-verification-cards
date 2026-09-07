@@ -1,0 +1,18 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026, Ghassan Malkawi, Ahmed Abdelaziz Elsayed, Makoto Takamoto, and Azmi Alazzam.
+
+Except for third-party materials identified in the source and licence ledger,
+author-created data tables, derived arrays, figures, documentation, and other
+non-code scientific artifacts in this archive are licensed under the Creative
+Commons Attribution 4.0 International licence.
+
+You are free to share and adapt these materials for any purpose, including
+commercial purposes, provided that appropriate credit is given, a link to the
+licence is provided, and changes are indicated. No additional restrictions may
+be applied. This notice is a summary; the legally operative licence is the CC
+BY 4.0 legal code at https://creativecommons.org/licenses/by/4.0/legalcode.
+
+Third-party PDEBench data, checkpoints, source files, names, and metadata retain
+their original licences and attribution requirements. External HDF5 and
+checkpoint binaries are not redistributed in this archive.

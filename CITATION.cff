@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "Residual Verification Cards: A Fail-Closed Audit Contract with Bounded Cross-Object Conformance Tests for Neural PDE Outputs"
+message: "If you use this software or reproducibility artifact, please cite the accompanying manuscript and this repository."
+type: software
+version: "Residual181"
+date-released: 2026-09-07
+repository-code: "https://github.com/shaikhamalkawi-ux/residual-verification-cards"
+authors:
+  - family-names: Malkawi
+    given-names: Ghassan
+  - family-names: Elsayed
+    given-names: Ahmed Abdelaziz
+  - family-names: Takamoto
+    given-names: Makoto
+  - family-names: Alazzam
+    given-names: Azmi
+  - family-names: Omari
+    given-names: Asem
+  - family-names: Badreddine
+    given-names: Said
+  - family-names: Hussein
+    given-names: Bakeel
+keywords:
+  - neural PDE
+  - audit conformance
+  - reproducibility
+  - provenance
+  - residual verification
