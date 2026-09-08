@@ -14,43 +14,39 @@ This repository is a reproducibility and conformance artifact. It is not a solve
 
 - Baseline unit tests: **36/36 PASS**.
 - Cross-object extension unit tests: **49/49 PASS**.
-- Fresh H05–H10 external-source rejection challenge: **6/6 overall-state agreement** and **6/6 semantic-route completion**.
+- Fresh H05-H10 external-source rejection challenge: **6/6 overall-state agreement** and **6/6 semantic-route completion**.
 - Positive external controls: **PC01 and PC06** are claim-scoped admissions.
 
 These results do **not** establish universal external validity, independent third-party validation, population sensitivity/specificity, exact checkpoint-training lineage for PC01/PC06, deployment readiness, certification, model superiority, or a residual-to-solution guarantee.
 
-## Repository map
+## Public code/configuration artifact
 
-- `baseline/` — baseline RVC implementation, schemas, finite conformance suites, calculations, tests, and verification records.
-- `cross_object_extension/` — bounded cross-object and package-intake extension with tests and verification records.
-- `external_challenge/` — public-facing post-lock H05–H10 challenge records and execution evidence.
-- `positive_external_controls/` — bounded positive-control code/configuration/provenance records.
-- `interoperability/` — public source ledger, acquisition tools, and interoperability metadata.
-- `documentation/` — revised supplementary material and public documentation.
-- `licenses/` — licenses for author-created code and non-code scientific artifacts.
+The complete author-created public code/configuration payload is stored under:
 
-Third-party datasets/checkpoints are not redistributed where public re-hosting is unnecessary or upstream licensing/provenance should remain authoritative. Included provenance records identify relevant external sources and hashes for reacquisition and verification.
+`archives/code_config/`
 
-## Verification
+It is split into 19 Base64 text parts because the connected publishing workflow writes UTF-8 repository files. Concatenate the parts in numerical order and Base64-decode them to reconstruct:
 
-For security, execute bundled verification code only in a disposable, no-network container or virtual machine.
+`RVC_CODE_CONFIG_COMPLETE.zip`
 
-### Baseline
+Expected SHA-256:
 
-```bash
-cd baseline
-python 02_Code/verify_rvc_package.py --full
-python 02_Code/run_unit_tests.py
-```
+`093ef05675fecd3a4e41e9dd3765aa3920d8cff834ff12179a1a58bb146a0a2c`
 
-### Cross-object extension
+The reconstructed ZIP contains **61 files**, including the baseline implementation and unit tests, cross-object extension implementation and tests, package-intake schema, public acquisition tooling, post-lock challenge tooling, positive-control execution code, environment specifications, RVC schemas/cards, and operator/reconstruction definitions.
+
+Example reconstruction on Linux/macOS:
 
 ```bash
-cd cross_object_extension
-PYTHONDONTWRITEBYTECODE=1 python 02_Code/rvc_extension/verify_extension.py
-python 02_Code/run_extension_tests.py
-python 02_Code/rvc_extension/package_audit.py 06_Package_Intake/Example_PASS
+cat archives/code_config/RVC_CODE_CONFIG_COMPLETE.zip.b64.part* > /tmp/rvc_code.b64
+base64 --decode /tmp/rvc_code.b64 > RVC_CODE_CONFIG_COMPLETE.zip
+sha256sum RVC_CODE_CONFIG_COMPLETE.zip
+unzip -t RVC_CODE_CONFIG_COMPLETE.zip
 ```
+
+For Windows PowerShell, concatenate the parts in lexicographic order, decode with `[Convert]::FromBase64String(...)`, and verify the same SHA-256 value.
+
+Third-party datasets/checkpoints and third-party source snapshots are not redistributed through this public repository when upstream licensing/provenance should remain authoritative. The journal supplementary package contains claim-bounded provenance records and publication-safe source references.
 
 ## Licensing
 
@@ -58,4 +54,4 @@ Author-created source code is released under the BSD 3-Clause License. Author-cr
 
 ## Citation
 
-Citation metadata are provided in `CITATION.cff`.
+Citation metadata are provided in `CITATION.cff`. For a journal resubmission requiring an immutable public reference, cite the exact Git commit URL supplied in the manuscript rather than an unfrozen branch URL.
