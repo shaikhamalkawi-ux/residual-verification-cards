@@ -25,26 +25,26 @@ The complete author-created public code/configuration payload is stored under:
 
 `archives/code_config/`
 
-It is split into 19 Base64 text parts because the connected publishing workflow writes UTF-8 repository files. Concatenate the parts in numerical order and Base64-decode them to reconstruct:
+The authoritative reconstruction path is the fail-closed verifier:
+
+```bash
+python archives/code_config/reconstruct_verified.py
+```
+
+The script reconstructs:
 
 `RVC_CODE_CONFIG_COMPLETE.zip`
 
-Expected SHA-256:
+and refuses to report PASS unless all of the following hold:
 
-`093ef05675fecd3a4e41e9dd3765aa3920d8cff834ff12179a1a58bb146a0a2c`
+- Base64 decoding succeeds;
+- SHA-256 equals `093ef05675fecd3a4e41e9dd3765aa3920d8cff834ff12179a1a58bb146a0a2c`;
+- ZIP CRC validation succeeds; and
+- the archive contains the expected **61 files**.
 
-The reconstructed ZIP contains **61 files**, including the baseline implementation and unit tests, cross-object extension implementation and tests, package-intake schema, public acquisition tooling, post-lock challenge tooling, positive-control execution code, environment specifications, RVC schemas/cards, and operator/reconstruction definitions.
+The repository history contains legacy segmented copies of parts 15, 17, and 18 that must **not** be used for manual concatenation. Their verified replacement text is stored under `archives/code_config/corrections/`, and `reconstruct_verified.py` selects those replacements explicitly. Parts 1–14, 16, and 19 are read from the original segmented files. This preserves repository history while making the current reconstruction procedure deterministic and fail-closed.
 
-Example reconstruction on Linux/macOS:
-
-```bash
-cat archives/code_config/RVC_CODE_CONFIG_COMPLETE.zip.b64.part* > /tmp/rvc_code.b64
-base64 --decode /tmp/rvc_code.b64 > RVC_CODE_CONFIG_COMPLETE.zip
-sha256sum RVC_CODE_CONFIG_COMPLETE.zip
-unzip -t RVC_CODE_CONFIG_COMPLETE.zip
-```
-
-For Windows PowerShell, concatenate the parts in lexicographic order, decode with `[Convert]::FromBase64String(...)`, and verify the same SHA-256 value.
+The reconstructed ZIP contains the baseline implementation and unit tests, cross-object extension implementation and tests, package-intake schema, public acquisition tooling, post-lock challenge tooling, positive-control execution code, environment specifications, RVC schemas/cards, and operator/reconstruction definitions.
 
 Third-party datasets/checkpoints and third-party source snapshots are not redistributed through this public repository when upstream licensing/provenance should remain authoritative. The journal supplementary package contains claim-bounded provenance records and publication-safe source references.
 
